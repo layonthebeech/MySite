@@ -1,0 +1,31 @@
+{
+  "name": "pat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "micro index"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.1.5",
+    "express": "^4.15.2",
+    "forecast": "^0.3.2",
+    "googleapis": "^17.1.0",
+    "jade": "^1.11.0",
+    "micro": "latest",
+    "mongodb": "^2.2.24",
+    "morgan": "^1.8.1",
+    "node-schedule": "^1.2.0",
+    "nodemailer": "^3.1.5",
+    "pug": "^2.0.0-beta11",
+    "r-json": "^1.2.5",
+    "request": "^2.80.0",
+    "requirejs": "^2.3.3",
+    "snoocore": "^3.3.1",
+    "underscore": "^1.8.3",
+    "youtube-api": "^2.0.6"
+  }
+}
