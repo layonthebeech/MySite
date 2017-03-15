@@ -17,3 +17,4 @@ nodesource_setup.sh
 .bashrc
 .bash_logout
 .cloud-locale-test.skip
+img/

@@ -3,13 +3,14 @@ const fs = require('fs'),
   readJson = require("r-json"),
   async = require('async'),
   email = require('./email.js'),
-  tessaEmail = require('./tessaEmail.js');
+  mailgun = require('./mailgun.js'),
+  emailBody = require('./emailBody.js');
+  //tessaEmail = require('./tessaEmail.js');
 
 
 function apiCall(info) {
-  console.log('sdsds')
   let finished = _.after(5, function(){
-    console.log('finish', info)
+    console.log('after')
     sendEmail(info)
   });
 
@@ -58,12 +59,11 @@ function apiCall(info) {
 }
 
 function sendEmail(info) {
-  console.log('sendEmail', info);
-  email.sendEmail(info);
-  tessaEmail.sendEmail(info.reddit)
+  mailgun.sendEmail('beecherp@gmail.com', info);
+  mailgun.sendEmail('tessa.dettman@gmail.com', info);
+  //mailgun.sendEmail('tessa.dettman@gmail.com', info);
 }
 
 module.exports = function(info) {
-  console.log('yes')
   apiCall(info);
 }

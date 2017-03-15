@@ -19,13 +19,24 @@ function sendEmail(info) {
   }
   console.log(info);
 
+  let pictureFrame = "<p> Your cute pic of the day is: ";
+  console.log(info.reddit);
+ if(info.reddit.match(/\.jpg/).length > 0) {
+  pictureFrame = " <img src='" + info.reddit + "' alt='CutePic'>";
+} else if (info.reddit.match(/\.gifv/).length > 0) {
+  pictureFrame = "<video poster='//i.imgur.com/YixM4RKh.jpg' preload='auto' autoplay='autoplay' muted='muted' loop='loop' webkit-playsinline='' style='width: 720px; height: 720px;'>" +
+                "<source src='" +info.reddit + "type='video/mp4'>" +
+                "</video>";
+}
+pictureFrame += "</p>";
+
   mailOptions.html = "<h1>Hi Pat!</h1>" +
                     "<div>" +
                     "<p> The current temperature is: " + info.weather.currentTemp + "</p>" +
                     "<p> The high is: " + info.weather.maxTemp + "</p>" +
                     "<p> The low is: " + info.weather.minTemp +"</p>" +
                     "<p> Your daily message is: " + info.message + "</p>" +
-                    "<p> Your cute pic of the day is: <img src='" + info.reddit + "' alt='CutePic'>" + "</p>" +
+                    pictureFrame +
                     "<p> and your recommended youtube video of the day is " + info.youtube + "</p>" +
                     "</div>";
 

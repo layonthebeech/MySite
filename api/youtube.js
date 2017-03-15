@@ -17,7 +17,6 @@ function getVideo(cb) {
         console.error('Error: ' + err);
       }
       if (data) {
-        console.log(data);
         cb(null, data.items[0].snippet);
       }
       if (response) {

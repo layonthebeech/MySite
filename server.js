@@ -11,7 +11,6 @@ var app = express();
 app.set('view engine', 'pug');
 
 app.get('/', function (req, res) {
-  console.log('yo')
     res.render(
         'homepage',
         { title: 'Hey Hey Hey!', message: 'Yo Yo'})
