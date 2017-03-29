@@ -7,7 +7,7 @@ const readJson = require('r-json'),
       acct = readJson(`${__dirname}/account.json`);
 
 var api_key = 'key-e717c1ff99e175315ae282b20283b5c2';
-var domain = '104.131.8.247';
+var domain = 'layonthebeech.tk';
 var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
 
 
