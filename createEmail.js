@@ -59,9 +59,12 @@ function apiCall(info) {
 }
 
 function sendEmail(info) {
-  mailgun.sendEmail('beecherp@gmail.com', info);
-  mailgun.sendEmail('tessa.dettman@gmail.com', info);
-  //mailgun.sendEmail('tessa.dettman@gmail.com', info);
+  let patInfo = info;
+  mailgun.sendEmail('beecherp@gmail.com', emailBody(patInfo), "Pat");
+  let tessaInfo = {};
+  tessaInfo.reddit = info.reddit;
+  mailgun.sendEmail('tessa.dettman@gmail.com', emailBody(tessaInfo, "Tessa"));
+
 }
 
 module.exports = function(info) {

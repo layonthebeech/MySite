@@ -1,18 +1,40 @@
+const path = require('path');
 
-function createMessage(info, fileName) {
-  let pictureFrame = "<p> Your cute pic of the day is: ";
-  pictureFrame = " <img src='cid:" + fileName+ "' alt='CutePic' style='width: 720px; height: 720px;'>";
-  pictureFrame += "</p>";
 
-  let emailBody = "<h1>Hi Pat!</h1>" +
-                    "<div>" +
-                    "<p> The current temperature is: " + info.weather.currentTemp + "</p>" +
-                    "<p> The high is: " + info.weather.maxTemp + "</p>" +
-                    "<p> The low is: " + info.weather.minTemp +"</p>" +
-                    "<p> Your daily message is: " + info.message + "</p>" +
-                    "<p> and your recommended youtube video of the day is " + info.youtube + "</p>" +
-                    "</div>";
-  return emailBody;
+function createMessage(info, name) {
+  let emailBody = "<h1>Hi" + name +  "</h1>";
+  let pictureFrame = "";
+  let fileName = "";
+  let filePath = "";
+  if(info.reddit) {
+    fileName = info.reddit.match(/[^\/]+(?=\/$|$)/)[0];
+    filePath = path.join(__dirname,'img', fileName);
+    pictureFrame+= "<p> Your cute pic of the day is: ";
+    pictureFrame += " <img src='cid:" + fileName + "' alt='CutePic' style='width: 720px; height: 720px;'>";
+    pictureFrame += "</p>";
+    emailBody+= pictureFrame;
+  }
+
+  if(info.weather) {
+      emailBody += "<p> The current temperature is: " + info.weather.currentTemp + "</p>" +
+                  "<p> The high is: " + info.weather.maxTemp + "</p>" +
+                  "<p> The low is: " + info.weather.minTemp +"</p>";
+  }
+  if(info.message) {
+      emailBody += "<p> Your daily message is: " + info.message + "</p>";
+  }
+  if(info.youtube) {
+    emailBody  += "<p> and your recommended youtube video of the day is " + info.youtube + "</p>";
+  }
+  var mailOptions = {
+      html: emailBody,
+      attachments: [{
+          filename: fileName,
+          path: filePath,
+          cid: fileName //same cid value as in the html img src
+      }]
+  }
+  return mailOptions;
 }
 
 module.exports = function(info) {
