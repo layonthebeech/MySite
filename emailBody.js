@@ -2,8 +2,8 @@ const path = require('path');
 
 
 function createMessage(info, name) {
-  console.log('info', info)
-  let emailBody = "<h1>Hi" + name +  "</h1>";
+  console.log('name', name)
+  let emailBody = "<h1>Hi " + name +  "</h1>";
   let pictureFrame = "";
   let fileName = "";
   //let filePath = "";
@@ -33,6 +33,6 @@ function createMessage(info, name) {
   return mailOptions;
 }
 
-module.exports = function(info) {
-  return createMessage(info);
+module.exports = function(info, name) {
+  return createMessage(info, name);
 }

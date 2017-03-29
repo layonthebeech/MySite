@@ -12,8 +12,6 @@ var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
 
 
 function sendEmail(recipient, info, mailOptions) {
-  console.log("herrryeyy")
-
   if(info.reddit) {
     var fileName = info.reddit.match(/[^\/]+(?=\/$|$)/)[0];
     var filePath = path.join(__dirname,'img', fileName);
@@ -24,7 +22,6 @@ function sendEmail(recipient, info, mailOptions) {
     if (err) {
       console.log('err1', err);
     }
-    console.log('message', message.toString('ascii'))
     mailgun
       .messages()
       .sendMime({
