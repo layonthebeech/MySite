@@ -60,10 +60,10 @@ function apiCall(info) {
 
 function sendEmail(info) {
   let patInfo = info;
-  mailgun.sendEmail('beecherp@gmail.com', emailBody(patInfo), "Pat");
+  mailgun.sendEmail('beecherp@gmail.com', info, emailBody(patInfo, "Pat"));
   let tessaInfo = {};
   tessaInfo.reddit = info.reddit;
-  mailgun.sendEmail('tessa.dettman@gmail.com', emailBody(tessaInfo, "Tessa"));
+  mailgun.sendEmail('tessa.dettman@gmail.com', info, emailBody(tessaInfo, "Tessa"));
 
 }
 

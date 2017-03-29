@@ -13,11 +13,18 @@ var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
 
 function sendEmail(recipient, info, mailOptions) {
   console.log("herrryeyy")
+
+  if(info.reddit) {
+    var fileName = info.reddit.match(/[^\/]+(?=\/$|$)/)[0];
+    var filePath = path.join(__dirname,'img', fileName);
+    mailOptions.attachments = [{filename: fileName, path: filePath, cid: fileName}]
+  }
   var mail = mailcomposer(mailOptions);
   mail.build(function (err, message) {
     if (err) {
       console.log('err1', err);
     }
+    console.log('message', message.toString('ascii'))
     mailgun
       .messages()
       .sendMime({
