@@ -32,7 +32,7 @@ function apiCall(info) {
     finished();
   });
   //get date
-  require('./api/date.js')(function(err, date) {
+  require('./api/date.js').getDateNoCallback(function(err, date) {
     if(err) {
       console.log('error', err);
     }

@@ -25,12 +25,15 @@ var reddit = new Snoocore({
 
 function getCute(cb) {
   reddit('/r/aww/top/?sort=top&t=day').get().then(function(result) {
-    let url = "";
-    let i = 0;
-    while(result.data.children[i].data.url.match(/\.gifv/) && result.data.children[i].data.url.match(/\.gifv/).length > 0 ) {
+    console.log(result.data.children)
+    var i = 0;
+    var url = result.data.children[i].data.url;
+    while(url.match(/\.gifv|gfycat|\.gif/) && url.match(/\.gifv|gfycat|\.gif/).length > 0 ) {
+      console.log(url)
       i++;
+      url = result.data.children[i].data.url;
     }
-    url = result.data.children[i].data.url;
+
     saveImage(url, cb);
   });
 }
