@@ -1,4 +1,4 @@
-const fs = require('fs'),
+var fs = require('fs'),
   _ = require('underscore'),
   readJson = require("r-json"),
   async = require('async'),
@@ -9,7 +9,7 @@ const fs = require('fs'),
 
 
 function apiCall(info) {
-  let finished = _.after(5, function(){
+  var finished = _.after(5, function(){
     console.log('after')
     sendEmail(info)
   });
@@ -32,7 +32,7 @@ function apiCall(info) {
     finished();
   });
   //get date
-  require('./api/date.js').getDateNoCallback(function(err, date) {
+  require('./api/date.js').getDate(function(err, date) {
     if(err) {
       console.log('error', err);
     }
@@ -59,9 +59,9 @@ function apiCall(info) {
 }
 
 function sendEmail(info) {
-  let patInfo = info;
+  var patInfo = info;
   mailgun.sendEmail('beecherp@gmail.com', info, emailBody(patInfo, "Pat"));
-  let tessaInfo = {};
+  var tessaInfo = {};
   tessaInfo.reddit = info.reddit;
   mailgun.sendEmail('tessa.dettman@gmail.com', info, emailBody(tessaInfo, "Tessa"));
 

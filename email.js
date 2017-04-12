@@ -1,16 +1,16 @@
-const nodemailer = require('nodemailer'),
+var nodemailer = require('nodemailer'),
       readJson = require('r-json'),
       acct = readJson(`${__dirname}/account.json`);
 
 function sendEmail(info) {
-  let transporter =  nodemailer.createTransport({
+  var transporter =  nodemailer.createTransport({
     service: 'hotmail',
     auth: {
         user: acct.user,
         pass: acct.pass
     }
   });
-  let mailOptions =  {
+  var mailOptions =  {
     from: acct.senderEmail, // sender address
     to: acct.senderEmail, // list of receivers
     subject: "Daily digest for " + info.date, // Subject line
@@ -19,7 +19,7 @@ function sendEmail(info) {
   }
   console.log(info);
 
-  let pictureFrame = "<p> Your cute pic of the day is: ";
+  var pictureFrame = "<p> Your cute pic of the day is: ";
   console.log(info.reddit);
  if(info.reddit.match(/\.jpg/).length > 0) {
   pictureFrame = " <img src='" + info.reddit + "' alt='CutePic'>";

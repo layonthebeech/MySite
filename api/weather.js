@@ -1,23 +1,23 @@
 
-const request = require('request'),
+var request = require('request'),
   Forecast = require('forecast'),
   readJson = require('r-json'),
   path = require('path'),
   forecastApiKey = readJson(path.join(__dirname,'/apikeys.json')).forecast,
   googleMapsKey = readJson(path.join(__dirname+'/apikeys.json')).googleMaps;
 
-let lat = "",
+var lat = "",
     long = "",
     currentTemp = "",
     maxTemp = "",
     min = "";
-const weatherObj = {};
+var weatherObj = {};
 
 //getLocation(function(){})
 
 function getLocation(cb) {
 
-  const coordinates = {};
+  var coordinates = {};
   request.post(
       'https://maps.googleapis.com/maps/api/geocode/json?address=' + 60201 + '&key=' + googleMapsKey,
       { json: { key: 'value' } },
@@ -32,7 +32,7 @@ function getLocation(cb) {
 }
 
 function getWeather(coordinates,cb) {
-  const forecast =  new Forecast({
+  var forecast =  new Forecast({
     service: 'darksky',
     key: forecastApiKey,
     units: 'farenheit',

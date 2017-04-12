@@ -1,4 +1,4 @@
-const google = require('googleapis'),
+var google = require('googleapis'),
           fs = require("fs"),
           readJson = require("r-json"),
           youtubeApiKey = readJson(`${__dirname}/apikeys.json`).youtube,

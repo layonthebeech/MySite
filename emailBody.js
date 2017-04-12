@@ -1,12 +1,12 @@
-const path = require('path');
+var path = require('path');
 
 
 function createMessage(info, name) {
   console.log('name', name)
-  let emailBody = "<h1>Hi " + name +  "</h1>";
-  let pictureFrame = "";
-  let fileName = "";
-  //let filePath = "";
+  var emailBody = "<h1>Hi " + name +  "</h1>";
+  var pictureFrame = "";
+  var fileName = "";
+  //var filePath = "";
   if(info.reddit) {
     fileName = info.reddit.match(/[^\/]+(?=\/$|$)/)[0];
     //filePath = path.join(__dirname,'img', fileName);

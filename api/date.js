@@ -12,7 +12,6 @@ function getDateNoCallback() {
       mm='0'+mm;
   }
   var date = "" + mm+'-'+dd+'-'+yyyy;
-  console.log('date', date)
   return date;
 }
 
@@ -36,7 +35,7 @@ function getDate(cb) {
 
 module.exports = {
   getDate: function(cb) {
-  getDate(cb);
+    getDate(cb);
   },
   getDateNoCallback: function() {
     return getDateNoCallback();

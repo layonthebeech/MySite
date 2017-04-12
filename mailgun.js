@@ -1,4 +1,4 @@
-const readJson = require('r-json'),
+var readJson = require('r-json'),
       path = require('path'),
       fs = require('fs'),
       createEmail = require('./emailBody');
