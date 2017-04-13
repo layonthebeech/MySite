@@ -1,4 +1,5 @@
-var path = require('path');
+var path = require('path'),
+    date = require('./api/date.js');
 
 
 function createMessage(info, name) {
@@ -8,7 +9,7 @@ function createMessage(info, name) {
   var fileName = "";
   //var filePath = "";
   if(info.reddit) {
-    fileName = info.reddit.match(/[^\/]+(?=\/$|$)/)[0];
+    fileName = date.getDateNoCallback() + '.jpg';
     //filePath = path.join(__dirname,'img', fileName);
     pictureFrame+= "<p> Your cute pic of the day is: ";
     pictureFrame += " <img src='cid:" + fileName + "' alt='CutePic' style='width: 720px; height: 720px;'>";

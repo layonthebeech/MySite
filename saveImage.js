@@ -1,6 +1,7 @@
 var fs = require('fs'),
   path = require('path'),
-  request = require('request');
+  request = require('request'),
+  date = require('./api/date.js');
 
 var downloadImage = function(url, imageName, callback){
   request.head(url, function(err, res, body){
@@ -12,7 +13,10 @@ var downloadImage = function(url, imageName, callback){
 
 
 module.exports = function(url, cb) {
-  console.log('uirl?', url, cb)
-  var imageName = url.match(/[^\/]+(?=\/$|$)/)[0];
+  console.log('url', url)
+  var imageName = date.getDateNoCallback() + '.jpg';//url.match(/[^\/]+(?=\/$|$)/)[0];
+  if(!url.match(/\.jpg|\.jpeg/)) {
+    url+='.jpg'
+  }
   downloadImage(url, imageName, cb);
 }

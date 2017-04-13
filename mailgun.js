@@ -1,10 +1,10 @@
 var readJson = require('r-json'),
       path = require('path'),
       fs = require('fs'),
-      createEmail = require('./emailBody');
-      //nodemailer = require('nodemailer');
-      mailcomposer = require('mailcomposer');
-      acct = readJson(`${__dirname}/account.json`);
+      createEmail = require('./emailBody'),
+      mailcomposer = require('mailcomposer'),
+      acct = readJson(`${__dirname}/account.json`),
+      date = require('./api/date.js');
 
 var api_key = 'key-e717c1ff99e175315ae282b20283b5c2';
 var domain = 'layonthebeech.tk';
@@ -13,7 +13,7 @@ var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
 
 function sendEmail(recipient, info, mailOptions) {
   if(info.reddit) {
-    var fileName = info.reddit.match(/[^\/]+(?=\/$|$)/)[0];
+    var fileName = date.getDateNoCallback() + '.jpg';
     var filePath = path.join(__dirname,'img', fileName);
     mailOptions.attachments = [{filename: fileName, path: filePath, cid: fileName}]
   }
